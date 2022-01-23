@@ -36,7 +36,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
             signature = "secret";
         }
 
-        if(request.getServletPath().equals("/login") || request.getServletPath().equals("/user/token/refresh")){
+        if(request.getServletPath().equals("/login") || request.getServletPath().equals("/token/refresh")){
             filterChain.doFilter(request,response);
         }else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);

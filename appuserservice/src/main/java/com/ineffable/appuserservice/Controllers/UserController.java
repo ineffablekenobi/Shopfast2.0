@@ -42,7 +42,6 @@ public class UserController {
     @Autowired
     private DTOService dtoService;
 
-    private String signature = "secret";
 
     @GetMapping("/")
     public ResponseEntity<UserWrapper> getAll(){
@@ -64,46 +63,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(dtoService.convertToDTO(userService.createNew(serviceUser)));
     }
 
-    @GetMapping("/token/refresh")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String authorizationHeader = request.getHeader(AUTHORIZATION);
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            try {
-
-                String refresh_token = authorizationHeader.substring("Bearer ".length());
-                Algorithm algorithm = Algorithm.HMAC256(signature.getBytes(StandardCharsets.UTF_8));
-                JWTVerifier verifier = JWT.require(algorithm).build();
-                DecodedJWT decodedJWT = verifier.verify(refresh_token);
-                String username = decodedJWT.getSubject();
-                User springUser = userService.loadSpringUser(username);
-
-                String access_token = JWT.create()
-                        .withSubject(springUser.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 2 * 60 * 1000))
-                        .withIssuer("Ineffable")
-                        .withClaim("roles",springUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                        .sign(algorithm);
-
-                Map<String,String> mp = new HashMap<>();
-                mp.put("access_token", access_token);
-                mp.put("refresh_token", refresh_token);
-                response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(),mp);
-
-            } catch (Exception e) {
-                response.setHeader("Failed at JWT Authorization Filter", e.getMessage());
-                response.setStatus(FORBIDDEN.value());
-                Map<String, String> mp = new HashMap<>();
-                mp.put("Error ", e.getMessage());
-                response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(), mp);
-            }
-        }else {
-            throw new RuntimeException("Refresh token missing");
-        }
-
-    }
 
 
 }

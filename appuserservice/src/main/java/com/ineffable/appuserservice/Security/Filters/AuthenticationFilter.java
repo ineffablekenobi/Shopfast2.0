@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ineffable.appuserservice.AppuserserviceApplication;
 import com.ineffable.appuserservice.Configurations.ConfigHolder;
+import com.ineffable.appuserservice.Controllers.TokenController;
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
