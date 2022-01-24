@@ -31,8 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @Value("#{${role.permissions}}")
-    private Map<String, List<String>> permissions;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,16 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        /*
+        if one url can be accessed by multiple role. use has any authority
+        be very precise about something you wanna do
+         */
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/login", "token/**").permitAll();
         //http.authorizeRequests().antMatchers("/user/**").hasAuthority("user");
-        for(Map.Entry<String, List<String>> entry : permissions.entrySet()){
-            List<String> permissionList = entry.getValue();
-            for(int i = 0; i < permissionList.size(); i++){
-                http.authorizeRequests().antMatchers(permissionList.get(i)).hasAuthority(entry.getKey());
-            }
-        }
+        http.authorizeRequests().antMatchers("/user/").hasAnyAuthority("user","admin");
+
         http.addFilter(new AuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
