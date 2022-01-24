@@ -1,29 +1,26 @@
 package com.ineffable.appuserservice.Controllers;
 
-
 import com.ineffable.appuserservice.DTO.RoleWrapper;
-import com.ineffable.appuserservice.Model.Role;
 import com.ineffable.appuserservice.Services.RoleService;
 import com.ineffable.appuserservice.Services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
-import org.w3c.dom.stylesheets.LinkStyle;
-
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/role")
+@RefreshScope
 public class RoleController {
+
+    @Value("${test.name}")
+    private String testVal;
 
     @Value("${roles.available}")
     private Set<String> availableRoles; // should be under the refresh scope
-
-    private List<Role> roles;
 
     @Autowired
     private RoleService roleService;
@@ -31,6 +28,9 @@ public class RoleController {
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "Add new Roles by this Endpoint",
+    description = "Change the roles from the config then do an actuator refresh." +
+            "After that call this method")
     @PostMapping("/add") //after every refresh this should be called
     public ResponseEntity<RoleWrapper> addRoles(){
         return ResponseEntity.ok().body(roleService.addRoles(availableRoles));

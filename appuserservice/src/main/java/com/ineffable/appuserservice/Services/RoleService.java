@@ -35,16 +35,28 @@ public class RoleService{
 
         Iterator<String> itr = roles.iterator();
 
+
+        List<Role> roleList = roleRepo.findAll();
+
+        for(int i = 0; i < roleList.size(); i++){
+            String existingRole =roleList.get(i).getRole();
+            if(!roles.contains(existingRole)){
+                roleRepo.deleteById(roleList.get(i).getId());
+                roleList.remove(roleList.get(i));
+                i--;
+            }
+        }
+
         while (itr.hasNext()){
             String currentRole = itr.next();
             if(!roleRepo.existsByRole(currentRole)){
                 Role createdRole = new Role();
                 createdRole.setRole(currentRole);
+                roleList.add(createdRole);
                 roleRepo.save(createdRole);
             }
         }
 
-        List<Role> roleList = roleRepo.findAll();
 
         roleWrapper.getRoles().clear();
 
