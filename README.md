@@ -159,7 +159,7 @@ example -
 
 
 
-[![EXAMPLE AUTHORIZATION][exampleAuthorization]]
+![EXAMPLE AUTHORIZATION][exampleAuthorization]
 
 
 
