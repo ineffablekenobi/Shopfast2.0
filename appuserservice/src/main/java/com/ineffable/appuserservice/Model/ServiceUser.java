@@ -1,5 +1,7 @@
 package com.ineffable.appuserservice.Model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +23,11 @@ public class ServiceUser {
 
     @OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_fk", referencedColumnName = "id")
+    @Schema(hidden = true)
     private List<Address> addresses;
 
     @ManyToMany(mappedBy = "serviceUsers", fetch = FetchType.EAGER)
+    @Schema(hidden = true)
     private List<Role> roles;
 
     public ServiceUser() {

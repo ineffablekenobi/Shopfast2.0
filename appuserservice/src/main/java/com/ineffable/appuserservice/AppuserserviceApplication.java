@@ -2,6 +2,7 @@ package com.ineffable.appuserservice;
 
 import com.ineffable.appuserservice.DTO.*;
 import com.ineffable.appuserservice.Security.UserDetailServiceConfig;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
+@OpenAPIDefinition
 public class AppuserserviceApplication {
 
 

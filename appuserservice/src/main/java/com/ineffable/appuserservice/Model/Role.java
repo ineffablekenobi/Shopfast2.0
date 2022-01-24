@@ -1,5 +1,6 @@
 package com.ineffable.appuserservice.Model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @Schema(hidden = true)
     private List<ServiceUser> serviceUsers;
 
     public Role() {

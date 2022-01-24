@@ -1,5 +1,7 @@
 package com.ineffable.appuserservice.Model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +21,9 @@ public class Address {
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = ServiceUser.class)
     @JoinColumn(name = "user_fk", referencedColumnName = "id")
+    @Schema(hidden = true)
     private ServiceUser serviceUser;
+
 
 
     public Address() {
