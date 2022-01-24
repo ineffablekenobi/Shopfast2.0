@@ -119,27 +119,47 @@ To get a local copy up and running follow these simple example steps.
 ### Things to Remember
 
 I disable the security by permitting all from the security config from the test process;
+
+
+
 When Security is enabled - 
 You have to send a POST request to /login page
 Content type would be Application/JSON
+
+
 example format -
 {
     "username" : "gg",
     "password" : "1234"
 }
+
+
+
 Response you will get a JSON.
+
 example -
 
 {
     "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsInJvbGVzIjpbInVzZXIiXSwiaXNzIjoiSW5lZmZhYmxlIiwiZXhwIjoxNjQzMDI2NDYxfQ.96QEn1yaKtTagYXOUATirIkWxKk5eq5Z5NAXBjG1kJ4",
-    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsImlzcyI6IkluZWZmYWJsZSIsImV4cCI6MTY0MzAzMjM0MX0.CUbCgnINMeapuS0suOqNGK1ftKWN6gN_WD5W_AIYiwA"
+    
+   "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsImlzcyI6IkluZWZmYWJsZSIsImV4cCI6MTY0MzAzMjM0MX0.CUbCgnINMeapuS0suOqNGK1ftKWN6gN_WD5W_AIYiwA"
 }
 
+
+
+
+
 Its a JWT token. You can use this to access page based on your role.
+
+
 To make a request to any secure page, Add a header.
 add header key "Authorization" and value "Bearer access_token" without quotes.
 example - 
-[![EXAMPLE AUTHORIZATION][exampleAuthorization]]
+
+
+
+
+![EXAMPLE AUTHORIZATION][exampleAuthorization]
 
 
 
