@@ -116,6 +116,34 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
+### Things to Remember
+
+I disable the security by permitting all from the security config from the test process;
+When Security is enabled - 
+You have to send a POST request to /login page
+Content type would be Application/JSON
+example format -
+{
+    "username" : "gg",
+    "password" : "1234"
+}
+Response you will get a JSON.
+example -
+
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsInJvbGVzIjpbInVzZXIiXSwiaXNzIjoiSW5lZmZhYmxlIiwiZXhwIjoxNjQzMDI2NDYxfQ.96QEn1yaKtTagYXOUATirIkWxKk5eq5Z5NAXBjG1kJ4",
+    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsImlzcyI6IkluZWZmYWJsZSIsImV4cCI6MTY0MzAzMjM0MX0.CUbCgnINMeapuS0suOqNGK1ftKWN6gN_WD5W_AIYiwA"
+}
+
+Its a JWT token. You can use this to access page based on your role.
+To make a request to any secure page, Add a header.
+add header key "Authorization" and value "Bearer access_token" without quotes.
+example - 
+[![EXAMPLE AUTHORIZATION][exampleAuthorization]]
+
+
+
+
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
@@ -224,3 +252,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
+[exampleAuthorization]: images/RequestExample.JPG
