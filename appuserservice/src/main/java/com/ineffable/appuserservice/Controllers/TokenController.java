@@ -6,22 +6,27 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ineffable.appuserservice.Services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.invoke.CallSite;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+import java.util.List;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -32,18 +37,49 @@ public class TokenController {
     @Autowired
     private UserService userService;
 
+    @Value("#{${role.permissions}}")
+    private Map<String,List<String>> permissions;
+
 
     private String signature = "secret";
 
+    @Operation(
+            summary = "Check if the user has permission to visit a certain url"
+    )
 
-    @GetMapping("/token/refresh")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/token/verify/accesstoken={token}/path={path}")
+    public ResponseEntity<?> verifyToken(@PathVariable("token") String token, @PathVariable("token") String path, HttpServletRequest request){
 
-        String authorizationHeader = request.getHeader(AUTHORIZATION);
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(signature.getBytes(StandardCharsets.UTF_8));
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
+            boolean permissionFound = false;
+
+            for(int i = 0; i < roles.length; i++){
+                List<String> urls = permissions.get(roles[i]);
+                if(urls.contains(path)){
+                    permissionFound = true;
+                    break;
+                }
+            }
+            if(permissionFound) {
+                return ResponseEntity.ok().build();
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+        }catch (Exception exception){
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @Operation(summary = "Provide Refresh token and Get Access token")
+    @GetMapping("/token/refresh/refreshtoken={refresh_token}")
+    public ResponseEntity<Map<String,String>> refreshToken(@PathVariable("refresh_token")String refresh_token) throws IOException {
+
             try {
-
-                String refresh_token = authorizationHeader.substring("Bearer ".length());
                 Algorithm algorithm = Algorithm.HMAC256(signature.getBytes(StandardCharsets.UTF_8));
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refresh_token);
@@ -60,20 +96,11 @@ public class TokenController {
                 Map<String,String> mp = new HashMap<>();
                 mp.put("access_token", access_token);
                 mp.put("refresh_token", refresh_token);
-                response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(),mp);
+                return ResponseEntity.ok(mp);
 
             } catch (Exception e) {
-                response.setHeader("Failed at JWT Authorization Filter", e.getMessage());
-                response.setStatus(FORBIDDEN.value());
-                Map<String, String> mp = new HashMap<>();
-                mp.put("Error ", e.getMessage());
-                response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(), mp);
+                return ResponseEntity.notFound().build();
             }
-        }else {
-            throw new RuntimeException("Refresh token missing");
         }
-
     }
-}
+
