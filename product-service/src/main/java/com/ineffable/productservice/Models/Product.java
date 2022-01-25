@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.processing.Generated;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class Product {
     private String category;
     private Set<String> tags;
 
-    private Timestamp lastUpdated;
+    private Date lastUpdated;
 
     private Map<String, String> properties;
 
@@ -59,11 +60,11 @@ public class Product {
         this.price = price;
     }
 
-    public Timestamp getLastUpdated() {
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

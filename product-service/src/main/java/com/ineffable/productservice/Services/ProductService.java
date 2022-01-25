@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class ProductService {
         if(productRepo.existsByProductCode(product.getProductCode())){
             throw new ProductAlreadyExistsException("Try update if you want to update");
         }
-        product.setLastUpdated(new Timestamp(System.currentTimeMillis()));
+        product.setLastUpdated(new Date(System.currentTimeMillis()));
         return productRepo.insert(product);
     }
 
@@ -29,7 +30,7 @@ public class ProductService {
         if(!productRepo.existsByProductCode(product.getProductCode())){
             throw new ProductNotFoundException("Try inserting the product first");
         }
-        product.setLastUpdated(new Timestamp(System.currentTimeMillis()));
+        product.setLastUpdated(new Date(System.currentTimeMillis()));
         return productRepo.save(product);
     }
 
