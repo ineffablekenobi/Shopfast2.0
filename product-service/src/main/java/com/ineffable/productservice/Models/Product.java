@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.processing.Generated;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
@@ -20,9 +21,11 @@ public class Product {
     @Id
     private String id;
 
+    @NotNull
+    private String productCode; // Unique per shop. Multiple shop can have same product code.
 
-    @Indexed(unique = true)
-    private String productCode; // something that uniquely identifies the product
+    @NotNull
+    private String shopCode; // unique of the sho that product belongs to
 
     private Double price;
     private String category;
@@ -62,6 +65,14 @@ public class Product {
 
     public Date getLastUpdated() {
         return lastUpdated;
+    }
+
+    public String getShopCode() {
+        return shopCode;
+    }
+
+    public void setShopCode(String shopCode) {
+        this.shopCode = shopCode;
     }
 
     public void setLastUpdated(Date lastUpdated) {

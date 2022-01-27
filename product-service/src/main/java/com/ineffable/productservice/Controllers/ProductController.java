@@ -32,10 +32,10 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/productcode={productCode}")
-    public ResponseEntity<?> getByProductCode(@PathVariable("productCode") String productCode){
+    @GetMapping("/productcode={productCode}&shopcode={shopcode}")
+    public ResponseEntity<?> getByProductCode(@PathVariable("productCode") String productCode, @PathVariable("shopcode")String shopCode){
         try {
-            Product response = productService.getByCode(productCode);
+            Product response = productService.getByCode(productCode,shopCode);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }catch (Exception e){
             return ResponseEntity.badRequest().build();
@@ -52,10 +52,10 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/delete/productcode={productCode}")
-    public ResponseEntity<?> deleteProduct(@PathVariable("productCode") String productCode){
+    @PostMapping("/delete/productcode={productCode}&shopcode={shopcode}")
+    public ResponseEntity<?> deleteProduct(@PathVariable("productCode") String productCode, @PathVariable("shopcode")String shopCode){
         try {
-            productService.deleteProduct(productCode);
+            productService.deleteProduct(productCode,shopCode);
             return ResponseEntity.ok().build();
         }catch (Exception e){
             return ResponseEntity.badRequest().build();

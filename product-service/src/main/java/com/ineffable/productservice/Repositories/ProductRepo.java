@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepo extends MongoRepository<Product,String> {
-    Optional<Product> findByProductCode(String productCode);
-    Boolean existsByProductCode(String productCode);
+    Optional<Product> findByProductCodeAndShopCode(String productCode, String ShopCode);
+    Boolean existsByProductCodeAndShopCode(String productCode, String ShopCode);
 
     @Override
     List<Product> findAll();
