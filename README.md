@@ -208,8 +208,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add User Service and Add JWT
-- [ ] Build a config server
+- [x] Add User Service and Add JWT
+- [x] Build a config server
+- [x] Build config clients
+- [x] Try dynamic config push
+- [x] Build Product Service
+- [x] Add shopCode to Product and User
+- [x] Add an Authentication Service with token in user
+- [x] Build a Inventory Service 
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
