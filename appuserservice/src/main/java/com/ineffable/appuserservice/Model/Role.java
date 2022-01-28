@@ -1,7 +1,6 @@
 package com.ineffable.appuserservice.Model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ public class Role {
 
     @Column(unique = true, nullable = false)
     private String role;
+
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(

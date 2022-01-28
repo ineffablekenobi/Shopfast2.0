@@ -1,7 +1,5 @@
 package com.ineffable.appuserservice.DTO;
 
-import com.ineffable.appuserservice.Model.ServiceUser;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +12,8 @@ public class ServiceUserDTO {
     private String Gender;
     private String phoneNumber;
     private String email;
+
+    private String shopCode;
 
 
     private List<Long> addresses;
@@ -40,6 +40,14 @@ public class ServiceUserDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public String getShopCode() {
+        return shopCode;
+    }
+
+    public void setShopCode(String shopCode) {
+        this.shopCode = shopCode;
     }
 
     public void setId(Long id) {

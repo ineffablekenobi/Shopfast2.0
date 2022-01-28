@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class ServiceUser {
@@ -13,7 +12,11 @@ public class ServiceUser {
     @GeneratedValue(strategy =GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(unique = true, nullable = false)
+    private String shopCode;
 
     private String password;
     private String Gender;
@@ -44,6 +47,14 @@ public class ServiceUser {
         this.email = email;
         this.addresses = addresses;
         this.roles = roles;
+    }
+
+    public String getShopCode() {
+        return shopCode;
+    }
+
+    public void setShopCode(String shopCode) {
+        this.shopCode = shopCode;
     }
 
     public Long getId() {

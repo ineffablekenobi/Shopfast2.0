@@ -28,6 +28,7 @@ public class DTOService {
         serviceUserDTO.setGender(serviceUser.getGender());
         serviceUserDTO.setPhoneNumber(serviceUser.getPhoneNumber());
         serviceUserDTO.setEmail(serviceUser.getEmail());
+        serviceUserDTO.setShopCode(serviceUser.getShopCode());
         serviceUserDTO.getRoles().clear();
         for(int i = 0; i < serviceUser.getRoles().size(); i++){
             serviceUserDTO.getRoles().add(serviceUser.getRoles().get(i).getRole());

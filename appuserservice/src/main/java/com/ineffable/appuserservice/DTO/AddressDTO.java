@@ -1,7 +1,5 @@
 package com.ineffable.appuserservice.DTO;
 
-import com.ineffable.appuserservice.Model.Address;
-
 public class AddressDTO {
     private Long id;
 

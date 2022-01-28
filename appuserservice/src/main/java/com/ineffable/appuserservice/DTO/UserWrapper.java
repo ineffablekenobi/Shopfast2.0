@@ -1,7 +1,5 @@
 package com.ineffable.appuserservice.DTO;
 
-import com.ineffable.appuserservice.Model.ServiceUser;
-
 import java.util.ArrayList;
 import java.util.List;
 

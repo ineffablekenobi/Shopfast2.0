@@ -1,8 +1,5 @@
 package com.ineffable.appuserservice.DTO;
 
-import com.ineffable.appuserservice.Model.Role;
-import com.ineffable.appuserservice.Model.ServiceUser;
-
 public class UserRoleResponse {
     private ServiceUserDTO serviceUserDTO;
     private RoleDTO roleDTO;

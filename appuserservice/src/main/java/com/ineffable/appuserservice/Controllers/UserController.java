@@ -19,9 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -57,12 +54,20 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/shop/username={username}")
+    public ResponseEntity<?> getUserShop(@PathVariable("username") String username){
+        Optional<ServiceUser> serviceUserOptional = userService.getByUserName(username);
+        if(serviceUserOptional.isPresent()){
+            return ResponseEntity.ok().body(serviceUserOptional.get().getShopCode());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ServiceUserDTO> addUser(@RequestBody ServiceUser serviceUser){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
         return ResponseEntity.created(uri).body(dtoService.convertToDTO(userService.createNew(serviceUser)));
     }
-
 
 
 
