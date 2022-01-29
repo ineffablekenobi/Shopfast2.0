@@ -39,8 +39,13 @@ public class InventoryController {
 
         }
 
-        ProductInventory response = inventoryService.addNew(productInventory);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        try {
+
+            ProductInventory response = inventoryService.addNew(productInventory);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Operation(summary = "Get Quantity by providing warehouse and sku")

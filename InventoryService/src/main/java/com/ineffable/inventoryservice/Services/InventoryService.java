@@ -7,10 +7,10 @@ import com.ineffable.inventoryservice.Exceptions.WareHouseNotRegisteredException
 import com.ineffable.inventoryservice.Models.ProductInventory;
 import com.ineffable.inventoryservice.Repositories.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.net.SocketTimeoutException;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,6 +20,14 @@ public class InventoryService {
     @Autowired
     private InventoryRepo inventoryRepo;
 
+    @Autowired
+    private InventoryWrapper inventoryWrapper;
+
+    @Autowired
+    private APICheckService apiCheckService;
+
+
+
     public ProductInventory getBySku(String Sku) throws Exception{
         Optional<ProductInventory> productInventoryOptional = inventoryRepo.findBySku(Sku);
         if(productInventoryOptional.isEmpty()){
@@ -28,13 +36,16 @@ public class InventoryService {
         return productInventoryOptional.get();
     }
 
-    public ProductInventory addNew(ProductInventory productInventory){
+    public ProductInventory addNew(ProductInventory productInventory) throws NoSuchFieldException {
         // create new inventory
+        apiCheckService.inventoryInsertableCheck(productInventory.getProductCode(), productInventory.getShopCode());
         return inventoryRepo.insert(productInventory);
     }
 
-    public ProductInventory updateInventory(ProductInventory productInventory) throws InventoryNotFoundException {
+    public ProductInventory updateInventory(ProductInventory productInventory) throws InventoryNotFoundException, NoSuchFieldException {
         // we add the new inventories to the existing inventory
+
+        apiCheckService.inventoryInsertableCheck(productInventory.getProductCode(), productInventory.getShopCode());
         Optional<ProductInventory> productInventoryOptional = inventoryRepo.findBySku(productInventory.getSku());
         if(productInventoryOptional.isEmpty()){
             throw new InventoryNotFoundException("Cant update Inventory");
@@ -84,7 +95,6 @@ public class InventoryService {
     }
 
     public InventoryWrapper getAll() {
-        InventoryWrapper inventoryWrapper= new InventoryWrapper();
         inventoryWrapper.setProductInventories(inventoryRepo.findAll());
         return inventoryWrapper;
     }

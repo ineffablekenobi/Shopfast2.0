@@ -36,6 +36,10 @@ public class ProductService {
         return productRepo.insert(product);
     }
 
+    public Boolean existByProductCode(String productCode, String shopCode){
+        return productRepo.existsByProductCodeAndShopCode(productCode,shopCode);
+    }
+
     public Product updateProduct(Product product) throws ProductNotFoundException{
         if(caseSensitive.toLowerCase(Locale.ROOT).equals("true")) {
             product.setShopCode(product.getShopCode().toLowerCase(Locale.ROOT));

@@ -21,10 +21,10 @@ public class Product {
     @Id
     private String id;
 
-    @NotNull
+    @NotNull(message = "ProductCode cant be Null")
     private String productCode; // Unique per shop. Multiple shop can have same product code.
 
-    @NotNull
+    @NotNull(message = "ShopCode cant be Null")
     private String shopCode; // unique of the sho that product belongs to
 
     private Double price;

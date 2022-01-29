@@ -22,6 +22,11 @@ public class ProductController {
         return ResponseEntity.ok(productWrapper);
     }
 
+    @GetMapping("/exists/productcode={productcode}&shopcode={shopcode}")
+    public ResponseEntity<Boolean> existByProductCode(@PathVariable("productcode")String productCode ,@PathVariable("shopcode") String shopCode){
+        return ResponseEntity.ok(productService.existByProductCode(productCode,shopCode));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<?> createNewProduct(@RequestBody Product product){
         try {
