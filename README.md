@@ -220,8 +220,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Build Eureka server
 - [x] Make existing Apis Eureka clients
 - [ ] Improve the Service function by inter api info transfer
+  - [ ] Inventory Service Optimization
+  - [ ] Product Service Opitmization 
 - [ ] Build a dependency model
-- [x] Add validator in product service
+- [x] Add validation
+  - [x] Product Service
+  - [ ] Inventory Service
+  - [ ] Shop Service 
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
