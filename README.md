@@ -217,8 +217,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Add an Authentication Service with token in user
 - [x] Build a Inventory Service 
 - [x] Build a Shop Service
-- [ ] Build Eureka server
-- [ ] Make existing Apis Eureka clients
+- [x] Build Eureka server
+- [x] Make existing Apis Eureka clients
+- [ ] Improve the Service function by inter api info transfer
+- [ ] Build a dependency model
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
