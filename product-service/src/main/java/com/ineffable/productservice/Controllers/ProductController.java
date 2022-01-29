@@ -57,7 +57,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/delete/productcode={productCode}&shopcode={shopcode}")
+    @DeleteMapping("/delete/productcode={productCode}&shopcode={shopcode}")
     public ResponseEntity<?> deleteProduct(@PathVariable("productCode") String productCode, @PathVariable("shopcode")String shopCode){
         try {
             productService.deleteProduct(productCode,shopCode);

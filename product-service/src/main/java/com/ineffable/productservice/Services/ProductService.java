@@ -23,7 +23,12 @@ public class ProductService {
     @Value("${codes.lowercaseOnly}")
     private String caseSensitive;
 
-    public Product createNew(Product product) throws ProductAlreadyExistsException {
+    @Autowired
+    private ApiCheckService apiCheckService;
+
+    public Product createNew(Product product) throws ProductAlreadyExistsException, NoSuchFieldException {
+
+        apiCheckService.shopExistsCheck(product.getShopCode());
 
         if(caseSensitive.toLowerCase(Locale.ROOT).equals("true")) {
             product.setShopCode(product.getShopCode().toLowerCase(Locale.ROOT));
@@ -40,7 +45,8 @@ public class ProductService {
         return productRepo.existsByProductCodeAndShopCode(productCode,shopCode);
     }
 
-    public Product updateProduct(Product product) throws ProductNotFoundException{
+    public Product updateProduct(Product product) throws ProductNotFoundException, NoSuchFieldException {
+        apiCheckService.shopExistsCheck(product.getShopCode());
         if(caseSensitive.toLowerCase(Locale.ROOT).equals("true")) {
             product.setShopCode(product.getShopCode().toLowerCase(Locale.ROOT));
             product.setProductCode(product.getShopCode().toLowerCase(Locale.ROOT));

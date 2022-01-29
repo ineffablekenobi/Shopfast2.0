@@ -19,6 +19,7 @@ public class Product {
 
 
     @Id
+    @Schema(hidden = true)
     private String id;
 
     @NotNull(message = "ProductCode cant be Null")
@@ -31,6 +32,7 @@ public class Product {
     private String category;
     private Set<String> tags;
 
+    @Schema(hidden = true)
     private Date lastUpdated;
 
     private Map<String, String> properties;

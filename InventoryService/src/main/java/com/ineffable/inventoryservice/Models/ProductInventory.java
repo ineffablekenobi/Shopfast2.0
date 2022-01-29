@@ -18,7 +18,7 @@ public class ProductInventory {
     @Id
     private String id;
 
-    @NotNull
+    @NotNull(message = "Shop Code Cant be Null")
     private String shopCode;
 
 
@@ -33,7 +33,7 @@ public class ProductInventory {
  */
     private Map<String, Long> productsPerWareHouse;
 
-    @NotNull
+    @NotNull(message = "Product code Cant be Null")
     private String productCode;
 
     /*
