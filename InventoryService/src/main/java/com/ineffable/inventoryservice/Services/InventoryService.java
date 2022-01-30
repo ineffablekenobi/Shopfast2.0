@@ -63,6 +63,7 @@ public class InventoryService {
         return inventoryRepo.save(dbInventory);
     }
 
+
     public Long InventoryCheck(String wareHouseCode, String sku) throws InventoryNotFoundException, WareHouseNotRegisteredException {
         Optional<ProductInventory> productInventoryOptional = inventoryRepo.findBySku(sku);
         if(productInventoryOptional.isEmpty()){
