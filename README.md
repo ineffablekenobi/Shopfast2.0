@@ -219,14 +219,16 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Build a Shop Service
 - [x] Build Eureka server
 - [x] Make existing Apis Eureka clients
-- [ ] Improve the Service function by inter api info transfer
-  - [ ] Inventory Service Optimization
-  - [ ] Product Service Opitmization 
+- [ x Improve the Service function by inter api info transfer
+  - [x] Inventory Service Optimization
+  - [x] Product Service Opitmization 
+  - [x] User Service Optimization
 - [ ] Build a dependency model
 - [x] Add validation
   - [x] Product Service
-  - [ ] Inventory Service
-  - [ ] Shop Service 
+  - [x] Inventory Service
+  - [x] Shop Service 
+- [ ] Build Shipping Service 
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
