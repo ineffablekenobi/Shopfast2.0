@@ -6,9 +6,11 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 @OpenAPIDefinition
@@ -58,5 +60,15 @@ public class AppuserserviceApplication {
     public UserDetailServiceConfig getUserDetails(){
         return new UserDetailServiceConfig();
     }
+
+    @Bean
+    public AddressWrapper getAddressWrapper(){return new AddressWrapper();}
+
+    @Bean
+    @LoadBalanced
+    public WebClient.Builder getClientBuilder(){
+        return WebClient.builder();
+    }
+
 
 }

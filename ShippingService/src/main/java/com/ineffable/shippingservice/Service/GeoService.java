@@ -31,4 +31,8 @@ public class GeoService {
         }
         return countrySet;
     }
+
+    public Boolean existByGeo(String country, String city) {
+        return geoRepo.existsByCountryAndName(country,city);
+    }
 }

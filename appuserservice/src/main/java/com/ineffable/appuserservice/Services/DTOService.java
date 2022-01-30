@@ -41,7 +41,7 @@ public class DTOService {
     }
 
 
-    public AddressDTO covertToDTO(Address addressObj){
+    public AddressDTO convertToDTO(Address addressObj){
         addressDTO.setId(addressObj.getId());
         addressDTO.setFirstName(addressObj.getFirstName());
         addressDTO.setLastName(addressObj.getLastName());
