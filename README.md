@@ -219,7 +219,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Build a Shop Service
 - [x] Build Eureka server
 - [x] Make existing Apis Eureka clients
-- [ x Improve the Service function by inter api info transfer
+- [x] Improve the Service function by inter api info transfer
   - [x] Inventory Service Optimization
   - [x] Product Service Opitmization 
   - [x] User Service Optimization
