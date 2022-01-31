@@ -5,10 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Document("ProductInventory")
 public class ProductInventory {
@@ -61,6 +58,7 @@ public class ProductInventory {
         this.sku = "";
         this.sku += this.shopCode+"-";
         this.sku += this.productCode+"-";
+        variants.sort(Comparator.comparing(Variant::getName).thenComparing(Variant::getValue));
         if(this.variants.size() != 0){
             for(int i = 0; i < this.variants.size() - 1; i++){
                 this.sku += variants.get(i).toString()+"-";

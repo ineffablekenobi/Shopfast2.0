@@ -69,6 +69,11 @@ public class UserController {
         return ResponseEntity.created(uri).body(dtoService.convertToDTO(userService.createNew(serviceUser)));
     }
 
+    @GetMapping("/exists/username={username}")
+    public ResponseEntity<Boolean> existsByUserName(@PathVariable("username")String username){
+        return ResponseEntity.ok(userService.existsByUserName(username));
+    }
+
 
 
 }

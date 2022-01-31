@@ -49,12 +49,17 @@ public class AddressController {
     }
 
     @GetMapping("/addressid={addressid}")
-    public ResponseEntity<?> getAddressById(@PathVariable("addressid") Long addresid){
+    public ResponseEntity<?> getAddressById(@PathVariable("addressid") Long addressid){
         try {
-            return ResponseEntity.ok(addressService.getAddressById(addresid));
+            return ResponseEntity.ok(addressService.getAddressById(addressid));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/exists/addressid={addressid}")
+    public ResponseEntity<Boolean> existsAddressById(@PathVariable("addressid")Long addressid){
+        return ResponseEntity.ok(addressService.existsAddressById(addressid));
     }
 
 }

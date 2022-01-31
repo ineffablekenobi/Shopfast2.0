@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @Document("Shop")
@@ -12,6 +13,7 @@ public class Shop {
     private String id;
 
     @Indexed(unique = true)
+    @NotNull(message = "ShopCode Cant be Null")
     private String shopCode; // user can select
 
     private String shopName;

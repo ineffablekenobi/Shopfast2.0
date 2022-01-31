@@ -59,6 +59,36 @@ public class InventoryController {
         }
     }
 
+    @GetMapping("/exists/sku={sku}")
+    public ResponseEntity<Boolean> existsBySku(@PathVariable("sku") String sku){
+        return ResponseEntity.ok(inventoryService.existsBySku(sku));
+    }
+
+    @PostMapping("/exists")
+    public ResponseEntity<Boolean> existsByInventory(@RequestBody ProductInventory productInventory){
+        String sku = productInventory.generateSku();
+        return ResponseEntity.ok(inventoryService.existsBySku(sku));
+    }
+
+    @GetMapping("/quantityleft/sku={sku}")
+    public ResponseEntity<?> getTotalQuantityBySku(@PathVariable("sku") String sku){
+        try {
+            return ResponseEntity.ok(inventoryService.getTotalQuantityBySku(sku));
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/quantityleft")
+    public ResponseEntity<?> getTotalQuantityByInventory(@RequestBody ProductInventory productInventory){
+        try {
+            return ResponseEntity.ok(inventoryService.getTotalQuantityBySku(productInventory.generateSku()));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0L);
+        }
+    }
+
+
     @Operation(summary = "Deduct Quantity by providing warehouse and sku"
     )
     @PostMapping("/quantitydeduct/warehousecode={warehousecode}&sku={sku}&quantity={quantity}")

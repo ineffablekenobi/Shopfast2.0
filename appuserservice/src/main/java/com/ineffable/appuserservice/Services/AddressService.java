@@ -31,7 +31,7 @@ public class AddressService {
     @Autowired
     private AddressWrapper addressWrapper;
 
-    public AddressDTO createNewAddress(String username,Address customerAddress) throws AddressNotFoundException{
+    public AddressDTO createNewAddress(String username,Address customerAddress) throws AddressNotFoundException {
         Optional<ServiceUser> user = userService.getByUserName(username);
 
         apiCheckService.existByCountryAndCity(customerAddress.getCountry(), customerAddress.getCity());
@@ -77,5 +77,7 @@ public class AddressService {
     }
 
 
-
+    public Boolean existsAddressById(Long addressid) {
+        return addressRepo.existsById(addressid);
+    }
 }

@@ -74,4 +74,7 @@ public class UserService {
     }
 
 
+    public Boolean existsByUserName(String username) {
+        return userRepo.existsByUsername(username);
+    }
 }

@@ -1,18 +1,20 @@
-package com.example.shopservice;
+package com.ineffable.orderservice;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 @OpenAPIDefinition
-public class ShopServiceApplication {
+public class OrderServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ShopServiceApplication.class, args);
+        SpringApplication.run(OrderServiceApplication.class, args);
     }
 
     @Bean
@@ -24,5 +26,12 @@ public class ShopServiceApplication {
     public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
     }
+
+    @Bean
+    @LoadBalanced
+    public WebClient.Builder getClientBuilder(){
+        return WebClient.builder();
+    }
+
 
 }

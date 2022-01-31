@@ -95,8 +95,31 @@ public class InventoryService {
         inventoryRepo.save(productInventoryOptional.get());
     }
 
+
+    public Boolean existsBySku(String sku){
+        return inventoryRepo.existsBySku(sku);
+    }
+
     public InventoryWrapper getAll() {
         inventoryWrapper.setProductInventories(inventoryRepo.findAll());
         return inventoryWrapper;
+    }
+
+    public Long getTotalQuantityBySku(String sku) throws InventoryNotFoundException {
+        Optional<ProductInventory> productInventoryOptional = inventoryRepo.findBySku(sku);
+        if(productInventoryOptional.isEmpty()){
+            throw new InventoryNotFoundException("Cant get Inventory By Sku");
+        }
+
+        Long totalQuantity = 0L;
+
+        Map<String,Long> products = productInventoryOptional.get().getProductsPerWareHouse();
+
+        for(Map.Entry<String,Long> entry: products.entrySet()){
+            totalQuantity+= entry.getValue();
+        }
+
+        return totalQuantity;
+
     }
 }

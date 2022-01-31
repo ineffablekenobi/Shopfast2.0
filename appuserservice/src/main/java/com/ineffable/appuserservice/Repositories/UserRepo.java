@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface UserRepo extends CrudRepository<ServiceUser,Long> {
     public List<ServiceUser> findAll();
     public Optional<ServiceUser> findByUsername(String username);
+    public Boolean existsByUsername(String username);
 }
