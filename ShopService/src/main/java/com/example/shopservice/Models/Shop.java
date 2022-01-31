@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Document("Shop")
@@ -20,9 +22,15 @@ public class Shop {
     private String shopAddress;
     private String shopWebsite;
     private String shopType;
+    private List<String> phoneNumber; // customer Help
+    private List<String> email; // customer help
+    private Boolean usingWareHouseFeature;
 
 
     public Shop() {
+        this.phoneNumber = new ArrayList<>();
+        this.email = new ArrayList<>();
+        this.usingWareHouseFeature = false;
     }
 
     public String getId() {
@@ -71,5 +79,29 @@ public class Shop {
 
     public void setShopType(String shopType) {
         this.shopType = shopType;
+    }
+
+    public List<String> getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(List<String> phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<String> getEmail() {
+        return email;
+    }
+
+    public void setEmail(List<String> email) {
+        this.email = email;
+    }
+
+    public Boolean getUsingWareHouseFeature() {
+        return usingWareHouseFeature;
+    }
+
+    public void setUsingWareHouseFeature(Boolean usingWareHouseFeature) {
+        this.usingWareHouseFeature = usingWareHouseFeature;
     }
 }

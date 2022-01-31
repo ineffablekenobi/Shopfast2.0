@@ -1,5 +1,6 @@
 package com.example.shopservice;
 
+import com.example.shopservice.Models.StringWrapper;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +24,11 @@ public class ShopServiceApplication {
     @Bean
     public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public StringWrapper getPhoneNumberWrapper(){
+        return new StringWrapper();
     }
 
 }
