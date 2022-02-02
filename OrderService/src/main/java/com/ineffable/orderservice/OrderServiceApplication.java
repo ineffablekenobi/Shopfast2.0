@@ -1,5 +1,7 @@
 package com.ineffable.orderservice;
 
+import com.ineffable.orderservice.DTO.OrdersWrapper;
+import com.ineffable.orderservice.Models.OrderWrapper;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,6 +33,11 @@ public class OrderServiceApplication {
     @LoadBalanced
     public WebClient.Builder getClientBuilder(){
         return WebClient.builder();
+    }
+
+    @Bean
+    public OrdersWrapper orderWrapper(){
+        return new OrdersWrapper();
     }
 
 

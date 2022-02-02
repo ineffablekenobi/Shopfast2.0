@@ -7,6 +7,7 @@ public class SubOrders {
     private String productCode;
     private List<Variant> variants;
     private Long quantity;
+    private Double pricePerUnit;
 
     public SubOrders() {
         variants = new ArrayList<>();
@@ -34,5 +35,13 @@ public class SubOrders {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public void setPricePerUnit(Double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 }

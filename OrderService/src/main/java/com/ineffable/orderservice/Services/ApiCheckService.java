@@ -131,8 +131,6 @@ public class ApiCheckService {
         wrapper.setValidations(orderRequestValidations);
         wrapper.setSuccessfullyValidated(successfulValidation);
 
-        // deduct the quantity after successfulValidation
-
         return wrapper;
 
 

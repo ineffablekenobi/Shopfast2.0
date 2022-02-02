@@ -15,7 +15,7 @@ public class Orders {
 
     private List<SubOrders> subOrders;
     private String shopCode;
-    private Long orderState; // pending processing shipped etc fronted will decide
+    private OrderState orderState; // pending processing shipped etc fronted will decide
 
     private Date lastUpdated;
     private Long billingId;
@@ -24,7 +24,6 @@ public class Orders {
     public Orders() {
         subOrders = new ArrayList<>();
         lastUpdated = new Date(System.currentTimeMillis());
-        orderState = 0L;
     }
 
     public String getId() {
@@ -51,14 +50,13 @@ public class Orders {
         this.shopCode = shopCode;
     }
 
-    public Long getOrderState() {
+    public OrderState getOrderState() {
         return orderState;
     }
 
-    public void setOrderState(Long orderState) {
+    public void setOrderState(OrderState orderState) {
         this.orderState = orderState;
     }
-
 
     public Date getLastUpdated() {
         return lastUpdated;

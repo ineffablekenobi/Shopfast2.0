@@ -11,6 +11,11 @@ public class OrderRequest {
     private String productCode;
     private Long quantity;
     private List<Variant> variants;
+    /*
+    Api user can add addition discounts as properties in the product that we might not be aware of
+    So we are taking pricePerUnit as an input
+     */
+    private Double pricePerUnit;
 
     public OrderRequest() {
     }
@@ -45,5 +50,13 @@ public class OrderRequest {
 
     public void setVariants(List<Variant> variants) {
         this.variants = variants;
+    }
+
+    public Double getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public void setPricePerUnit(Double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 }
