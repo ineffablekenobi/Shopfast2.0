@@ -23,10 +23,39 @@ public class ShopfastgatewayApplication {
         return routeLocatorBuilder.routes()
                 .route(
                         p ->  p.path("/orders/**")
-                                .filters(f-> f.filter(orderedGatewayFilter))
+                                //.filters(f-> f.filter(orderedGatewayFilter))
                                 .uri("lb://order-service/")
+                ).route(
+                        p-> p.path("/shop/**")
+                                .filters(f-> f.filter(orderedGatewayFilter))
+                                .uri("lb://shop-service/")
+                ).route(
+                        p -> p.path("/product/**")
+                                .filters(f-> f.filter(orderedGatewayFilter))
+                                .uri("lb://product-service")
+                ).route(
+                        p -> p.path("/geo/**")
+                                .filters( f -> f.filter(orderedGatewayFilter))
+                                .uri("lb://shipping-service")
+                ).route(
+                        p-> p.path("/shipping/**")
+                                .filters( f -> f.filter(orderedGatewayFilter))
+                                .uri("lb://shipping-service")
+                ).route(
+                        p-> p.path("/inventory/**")
+                                .filters( f -> f.filter(orderedGatewayFilter))
+                                .uri("lb://inventory-service")
+                ).route(
+                        p-> p.path("/role/**")
+                                .filters( f -> f.filter(orderedGatewayFilter))
+                                .uri("lb://user-service")
+                ).route(
+                        p-> p.path("/user/**")
+                                .filters( f -> f.filter(orderedGatewayFilter))
+                                .uri("lb://user-service")
+                )
 
-                ).build();
+                .build();
     }
 
 }

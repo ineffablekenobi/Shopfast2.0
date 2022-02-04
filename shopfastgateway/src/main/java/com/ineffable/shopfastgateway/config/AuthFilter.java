@@ -37,7 +37,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
-
+/*
             if (!request.getHeaders().containsKey("Authorization")) {
                 return this.onError(exchange, "No Authorization header", HttpStatus.UNAUTHORIZED);
             }
@@ -47,7 +47,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             if (!this.isAuthorizationValid(authorizationHeader)) {
                 return this.onError(exchange, "Invalid Authorization header", HttpStatus.UNAUTHORIZED);
             }
-
+*/
 
             ServerHttpRequest modifiedRequest = exchange.getRequest().mutate().
                     header("secret", RandomStringUtils.random(10)).
