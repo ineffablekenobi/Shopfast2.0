@@ -23,7 +23,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="150" height="150">
+    <img src="images/logo.png" alt="Logo" width="250" height="150">
   </a>
 
   <h3 align="center">Shop Fast Application</h3>
