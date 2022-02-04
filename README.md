@@ -94,9 +94,12 @@ Use the `BLANK_README.md` to get started.
 
 
 ### Built With
+<div align = "center">
+  <img src = "images/springlogo.png">
+  </div>
 
-* [![Spring Boot][springimg]](https://spring.io/projects/spring-boot)
-* [![Spring Cloud][springimg]](https://spring.io/projects/spring-cloud)
+* [Spring Boot](https://spring.io/projects/spring-boot)
+* [Spring Cloud](https://spring.io/projects/spring-cloud)
 * [Spring Security](https://spring.io/projects/spring-security)
 * [Spring Data](https://spring.io/projects/spring-data)
 * [Netflix Eureka](https://github.com/Netflix/eureka)
@@ -295,4 +298,3 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [exampleAuthorization]: images/RequestExample.JPG
-[springimg]: images/springlogo.png
