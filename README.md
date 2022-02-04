@@ -95,16 +95,15 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [![Spring Boot][springimg]](https://spring.io/projects/spring-boot)
+* [![Spring Cloud][springimg]](https://spring.io/projects/spring-cloud)
+* [Spring Security](https://spring.io/projects/spring-security)
+* [Spring Data](https://spring.io/projects/spring-data)
+* [Netflix Eureka](https://github.com/Netflix/eureka)
+* [Netflix Ribbon](https://github.com/Netflix/ribbon)
+* [Netflix Hystrix](https://github.com/Netflix/Hystrix)
+* [MYSQL](https://www.mysql.com/)
+* [MONGODB](https://www.mongodb.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -118,7 +117,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Things to Remember
 
-I disable the security by permitting all from the security config from the test process;
+I disabled the security by permitting all from the security config from the test process;
 
 
 
@@ -228,9 +227,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Product Service
   - [x] Inventory Service
   - [x] Shop Service 
-- [ ] Build Shipping Service 
+- [x] Build Shipping Service
+- [x] Build Order Service
+- [x] Build an API Gateway(Eureka Based)
+- [ ] Test Authentication on the gateway
+- [ ] Develop hierarchy based authentication technique
+- [ ] Fault tolerance and isolation
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -292,3 +295,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [exampleAuthorization]: images/RequestExample.JPG
+[springimg]: images/springlogo.png
