@@ -59,8 +59,13 @@ public class TokenController {
 
             for(int i = 0; i < roles.length; i++){
                 List<String> urls = permissions.get(roles[i]);
-                if(urls.contains(path)){
-                    permissionFound = true;
+                for(int j = 0; j < urls.size(); j++){
+                    if(urls.get(j).startsWith(path)){
+                        permissionFound = true;
+                        break;
+                    }
+                }
+                if(permissionFound){
                     break;
                 }
             }
