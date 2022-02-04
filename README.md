@@ -95,14 +95,15 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
+  </br>
+  </br>
+  </br>
+  
   
   <div align = "center">
     <img src = "images/springlogo.png" width="600" height="300" >
   </div>
   </div>
-  
-  </br>
-  </br>
   </br>
   </br>
   </br>
@@ -112,7 +113,9 @@ Use the `BLANK_README.md` to get started.
     <img src = "images/NetflixOss.jpeg" width="600" height="300" >
   </div>
   
-
+  </br>
+  </br>
+  </br>
 
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Spring Cloud](https://spring.io/projects/spring-cloud)
@@ -123,6 +126,10 @@ Use the `BLANK_README.md` to get started.
 * [Netflix Hystrix](https://github.com/Netflix/Hystrix)
 * [MYSQL](https://www.mysql.com/)
 * [MONGODB](https://www.mongodb.com/)
+
+  </br>
+  </br>
+  </br>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
