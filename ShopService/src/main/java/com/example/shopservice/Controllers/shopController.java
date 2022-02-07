@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -113,6 +114,12 @@ public class shopController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/test")
+    public String testFunc(HttpServletRequest request){
+        return request.getHeader("username");
+    }
+
 
     @PutMapping("/status/usingWareHouseFeature/shopcode={shopcode}")
     public ResponseEntity setWareHouseFeatureStatus(@PathVariable("shopcode")String shopcode, @RequestBody Boolean status){

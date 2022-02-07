@@ -27,9 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.List;
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 public class TokenController {
@@ -56,7 +53,6 @@ public class TokenController {
             DecodedJWT decodedJWT = verifier.verify(token);
             String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
             boolean permissionFound = false;
-
             for(int i = 0; i < roles.length; i++){
                 List<String> urls = permissions.get(roles[i]);
                 for(int j = 0; j < urls.size(); j++){
@@ -70,7 +66,7 @@ public class TokenController {
                 }
             }
             if(permissionFound) {
-                return ResponseEntity.ok().build();
+                return ResponseEntity.ok(decodedJWT.getSubject());
             }else{
                 return ResponseEntity.notFound().build();
             }

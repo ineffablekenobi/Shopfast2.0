@@ -34,7 +34,7 @@ public class UserService {
     public UserWrapper getAll(){
 
         List<ServiceUser> serviceUserList = userRepo.findAll();
-
+        userWrapper.getServiceUsers().clear();
         for(int i = 0; i <serviceUserList.size(); i++){
             userWrapper.getServiceUsers().add(dtoService.convertToDTO(serviceUserList.get(i)));
         }

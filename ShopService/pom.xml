@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ineffable</groupId>
-    <artifactId>product-service</artifactId>
+    <artifactId>shop-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>shop-service</name>
     <description>Shop Service for shopfast 2.0</description>

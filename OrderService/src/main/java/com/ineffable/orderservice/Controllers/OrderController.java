@@ -3,15 +3,11 @@ package com.ineffable.orderservice.Controllers;
 import com.ineffable.orderservice.DTO.Inputs.OrderRequestWrapper;
 import com.ineffable.orderservice.DTO.OrderRequestValidationWrapper;
 import com.ineffable.orderservice.DTO.OrdersWrapper;
-import com.ineffable.orderservice.Models.OrderState;
-import com.ineffable.orderservice.Models.OrderWrapper;
-import com.ineffable.orderservice.Models.Orders;
 import com.ineffable.orderservice.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
@@ -46,7 +42,5 @@ public class OrderController {
     public OrdersWrapper getByShop(@PathVariable("shopcode") String shopcode){
         return orderService.getByShopCode(shopcode);
     }
-
-
 
 }

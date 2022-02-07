@@ -10,6 +10,12 @@ import java.util.List;
 @Document("OrdersByShop")
 public class Orders {
 
+    /*
+    An order is made of list of subOrders that belongs to a particular shop.
+    They each have their own state assuming a shop will ship all their orders
+    for the same customer under the same package.
+     */
+
     @Id
     private String id;
 

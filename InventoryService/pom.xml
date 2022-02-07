@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ineffable</groupId>
-    <artifactId>product-service</artifactId>
+    <artifactId>inventory-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>product-service</name>
-    <description>Product Service for shopfast 2.0</description>
+    <name>inventory-service</name>
+    <description>Inventory Service for shopfast 2.0</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>

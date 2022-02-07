@@ -66,14 +66,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         String access_token = JWT.create()
                 .withSubject(springUser.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 2 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 60L * 24 * 60 * 60 * 1000))
                 .withIssuer("Ineffable")
                 .withClaim("roles",springUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
         String refresh_token = JWT.create()
                 .withSubject(springUser.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 100 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 180L * 24 * 60 * 60 * 1000))
                 .withIssuer("Ineffable")
                 .sign(algorithm);
 

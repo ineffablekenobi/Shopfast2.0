@@ -10,6 +10,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
 
@@ -48,9 +52,14 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                 return this.onError(exchange, "Invalid Authorization header", HttpStatus.UNAUTHORIZED);
             }
 */
+            List<String> roles  =new ArrayList<>();
+            roles.add("GG");
+            roles.add("WP");
+            roles.add("GGWP");
 
             ServerHttpRequest modifiedRequest = exchange.getRequest().mutate().
-                    header("secret", RandomStringUtils.random(10)).
+                    header("secret", RandomStringUtils.random(10))
+                            .header("username", Arrays.toString(roles.toArray())).
                     build();
 
             return chain.filter(exchange.mutate().request(modifiedRequest).build());
