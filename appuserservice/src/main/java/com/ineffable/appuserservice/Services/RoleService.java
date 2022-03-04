@@ -35,7 +35,6 @@ public class RoleService{
 
         Iterator<String> itr = roles.iterator();
 
-
         List<Role> roleList = roleRepo.findAll();
 
         for(int i = 0; i < roleList.size(); i++){
@@ -70,7 +69,6 @@ public class RoleService{
     public RoleWrapper getRoles(){
 
         List<Role> roleList = roleRepo.findAll();
-
         roleWrapper.getRoles().clear();
 
         for(int i = 0; i < roleList.size(); i++){
