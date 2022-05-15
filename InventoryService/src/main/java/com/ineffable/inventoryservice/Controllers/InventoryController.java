@@ -4,6 +4,7 @@ import com.ineffable.inventoryservice.DTO.InventoryWrapper;
 import com.ineffable.inventoryservice.Models.ProductInventory;
 import com.ineffable.inventoryservice.Services.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
+import jdk.jfr.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,7 +71,43 @@ public class InventoryController {
         return ResponseEntity.ok(inventoryService.existsBySku(sku));
     }
 
+    @PutMapping("/exists")
+    @Operation(summary = "Get SKU by providing shopcode,productcode,variants",
+    description = "Example code - \n" +
+            "{\n" +
+            "  \"id\": \"string\",\n" +
+            "  \"shopCode\": \"CFK\",\n" +
+            "  \"productsPerWareHouse\": {\n" +
+            "    \"additionalProp1\": 0,\n" +
+            "    \"additionalProp2\": 0,\n" +
+            "    \"additionalProp3\": 0\n" +
+            "  },\n" +
+            "  \"productCode\": \"CFT-200\",\n" +
+            "  \"variants\": [\n" +
+            "    {\n" +
+            "      \"name\": \"COLOR\",\n" +
+            "      \"value\": \"RED\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"SIZE\",\n" +
+            "      \"value\": \"M\"\n" +
+            "    }\n" +
+            "\n" +
+            "  ],\n" +
+            "  \"sku\": \"string\"\n" +
+            "}")
+
+    public ResponseEntity<?> getInventorySku(@RequestBody ProductInventory productInventory){
+        String sku = productInventory.generateSku();
+        if(inventoryService.existsBySku(sku)){
+            return ResponseEntity.ok(sku);
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/quantityleft/sku={sku}")
+
     public ResponseEntity<?> getTotalQuantityBySku(@PathVariable("sku") String sku){
         try {
             return ResponseEntity.ok(inventoryService.getTotalQuantityBySku(sku));
@@ -80,6 +117,9 @@ public class InventoryController {
     }
 
     @PostMapping("/quantityleft")
+    @Operation(summary = "Get total Quantity of product from all warehouse(NO SKU REQUIRED)",
+    description = "Dont need provide the SKU. \n Just Provide the object. " +
+            "\n ProductCode, ShopCode, Variants are mandatory")
     public ResponseEntity<?> getTotalQuantityByInventory(@RequestBody ProductInventory productInventory){
         try {
             return ResponseEntity.ok(inventoryService.getTotalQuantityBySku(productInventory.generateSku()));
@@ -89,7 +129,8 @@ public class InventoryController {
     }
 
 
-    @Operation(summary = "Deduct Quantity by providing warehouse and sku"
+    @Operation(summary = "Deduct Quantity by providing warehouse and sku",
+            description = "If you are not using warehouse feature just provide warehouse unknowns"
     )
     @PostMapping("/quantitydeduct/warehousecode={warehousecode}&sku={sku}&quantity={quantity}")
     public ResponseEntity deductQuantity(@PathVariable("warehousecode")String wareHouseCode, @PathVariable("sku")String sku,
