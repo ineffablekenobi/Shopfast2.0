@@ -12,7 +12,7 @@ public class AddressDTO {
     private String country;
     private String addressType; // can be billing or shipping address
 
-    private  Long serviceUserId;
+    private Long serviceUserId;
 
 
     public AddressDTO() {

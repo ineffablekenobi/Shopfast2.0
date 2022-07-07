@@ -10,6 +10,7 @@ import com.ineffable.appuserservice.DTO.UserWrapper;
 import com.ineffable.appuserservice.Model.ServiceUser;
 import com.ineffable.appuserservice.Services.DTOService;
 import com.ineffable.appuserservice.Services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,12 +40,13 @@ public class UserController {
     @Autowired
     private DTOService dtoService;
 
-
+    @Operation(summary = "Get all users")
     @GetMapping("/")
     public ResponseEntity<UserWrapper> getAll(){
         return ResponseEntity.ok().body(userService.getAll());
     }
 
+    @Operation(summary = "Get user by username")
     @GetMapping("/username={username}")
     public ResponseEntity<?> getByUserName(@PathVariable("username") String username){
         Optional<ServiceUser> serviceUserOptional = userService.getByUserName(username);
@@ -54,6 +56,10 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @Operation(summary = "Get shopCode given user",
+            description = "if the user is a customer you'll receive null and if " +
+                    "he is a staff you will receive the shop he is assigned to"
+    )
     @GetMapping("/shop/username={username}")
     public ResponseEntity<?> getUserShop(@PathVariable("username") String username){
         Optional<ServiceUser> serviceUserOptional = userService.getByUserName(username);
@@ -63,12 +69,14 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @Operation(summary = "Create new user")
     @PostMapping("/add")
     public ResponseEntity<ServiceUserDTO> addUser(@RequestBody ServiceUser serviceUser){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
         return ResponseEntity.created(uri).body(dtoService.convertToDTO(userService.createNew(serviceUser)));
     }
 
+    @Operation(summary = "Check if a user exists given the username")
     @GetMapping("/exists/username={username}")
     public ResponseEntity<Boolean> existsByUserName(@PathVariable("username")String username){
         return ResponseEntity.ok(userService.existsByUserName(username));

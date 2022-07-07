@@ -21,7 +21,9 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @Operation(summary = "Create New Address")
+    @Operation(summary = "Create New Address",
+        description = "Provide a username as parameter. It indicates the address belongs to the given username"
+    )
     @PostMapping("/new/username={username}")
     public ResponseEntity<?> createNewAddress(@PathVariable("username") String username, @RequestBody Address customerAddress){
         AddressDTO addressDTO;
@@ -39,6 +41,7 @@ public class AddressController {
         }
     }
 
+    @Operation(summary = "Get the addresses registered under a user")
     @GetMapping("/username={username}")
     public ResponseEntity<?> getAddresses(@PathVariable("username") String username){
         try {
@@ -48,6 +51,7 @@ public class AddressController {
         }
     }
 
+    @Operation(summary = "Get address by id")
     @GetMapping("/addressid={addressid}")
     public ResponseEntity<?> getAddressById(@PathVariable("addressid") Long addressid){
         try {
@@ -57,6 +61,7 @@ public class AddressController {
         }
     }
 
+    @Operation(summary = "Check if address exists by given Id")
     @GetMapping("/exists/addressid={addressid}")
     public ResponseEntity<Boolean> existsAddressById(@PathVariable("addressid")Long addressid){
         return ResponseEntity.ok(addressService.existsAddressById(addressid));

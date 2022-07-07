@@ -10,12 +10,13 @@ import java.util.List;
 public class ServiceUser {
     @Id
     @GeneratedValue(strategy =GenerationType.SEQUENCE)
+    @Schema(hidden = true)
     private Long id;
 
     @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String shopCode;
 
     private String password;

@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Schema(hidden = true)
     private Long id;
 
     private String firstName;
