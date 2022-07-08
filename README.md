@@ -218,6 +218,9 @@ Here's our installion guide
 
 4. See the documentations
 
+</br>
+</br>
+
 [Documentation Site](https://ineffablekenobi.github.io/Shopfast2.0/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -227,9 +230,9 @@ Here's our installion guide
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The people looking for a backend for ecommerce website can use this.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://ineffablekenobi.github.io/Shopfast2.0/)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -284,7 +287,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [@swapnilsharmasas](https://twitter.com/swapnilsharmasa) - swapnilsharmasarker@gmail.com
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
