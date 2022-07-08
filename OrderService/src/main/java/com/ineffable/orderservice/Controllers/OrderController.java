@@ -18,7 +18,12 @@ public class OrderController {
     @PostMapping("/new")
     public ResponseEntity<OrderRequestValidationWrapper> createOrder(@RequestBody OrderRequestWrapper orderRequestWrapper){
         try {
-            return ResponseEntity.ok(orderService.createNewOrder(orderRequestWrapper));
+            OrderRequestValidationWrapper validationWrapper = orderService.createNewOrder(orderRequestWrapper);
+            if(validationWrapper.getSuccessfullyValidated()) {
+                return ResponseEntity.ok(validationWrapper);
+            }else{
+                return ResponseEntity.notFound().build();
+            }
         }catch (Exception e){
             return ResponseEntity.notFound().build();
         }

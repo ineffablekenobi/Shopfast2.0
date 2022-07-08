@@ -4,6 +4,7 @@ import com.example.shopservice.DTO.ShopWrapper;
 import com.example.shopservice.Models.StringWrapper;
 import com.example.shopservice.Models.Shop;
 import com.example.shopservice.Services.ShopService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,13 @@ public class shopController {
     @Autowired
     private ShopService shopService;
 
+    @Operation(summary = "Get all shops")
     @GetMapping("/")
     public ResponseEntity<ShopWrapper> getAll(){
         return ResponseEntity.ok(shopService.getAll());
     }
 
+    @Operation(summary = "Create new shop")
     @PostMapping("/new")
     public ResponseEntity<?> createNew(@RequestBody Shop shop){
         try {
@@ -33,12 +36,13 @@ public class shopController {
         }
     }
 
+    @Operation(summary = "Exists by shopCode")
     @GetMapping("exists/shopcode={shopcode}")
     public ResponseEntity<Boolean> existByShopCode(@PathVariable("shopcode")String shopCode){
         return ResponseEntity.ok(shopService.existShopByShopCode(shopCode));
     }
 
-
+    @Operation(summary = "Get shop by shopcode")
     @GetMapping("/shopcode={shopcode}")
     public ResponseEntity<?> getByShopCode(@PathVariable("shopcode")String shopCode){
         try {

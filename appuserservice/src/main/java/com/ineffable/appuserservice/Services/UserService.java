@@ -70,6 +70,7 @@ public class UserService {
     }
 
     public void updateUser(ServiceUser serviceUser){
+        // make sure the id is assigned
         userRepo.save(serviceUser);
     }
 

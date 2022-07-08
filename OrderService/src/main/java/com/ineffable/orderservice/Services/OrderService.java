@@ -48,6 +48,7 @@ public class OrderService {
             subOrders.setQuantity(orderRequests.get(i).getQuantity());
             subOrders.setVariants(orderRequests.get(i).getVariants());
             subOrders.setPricePerUnit(orderRequests.get(i).getPricePerUnit());
+
             if(subOrdersByShop.containsKey(orderRequests.get(i).getShopCode())){
                 subOrdersByShop.get(orderRequests.get(i).getShopCode()).add(subOrders);
             }else {
@@ -58,14 +59,19 @@ public class OrderService {
 
         List<Orders> ordersList = new ArrayList<>();
 
+
+
         for(Map.Entry<String,List<SubOrders>> entry : subOrdersByShop.entrySet()){
+
             Orders orders = new Orders();
+
             orders.setBillingId(orderRequestWrapper.getBillingId());
             orders.setShippingId(orderRequestWrapper.getShippingId());
             orders.setSubOrders(entry.getValue());
             orders.setShopCode(entry.getKey());
             orders.setOrderState(OrderState.PENDING);
             Orders insertedOrder = ordersRepo.insert(orders);
+            apiCheckService.quantityDeduct(orders,entry.getKey());
             ordersList.add(insertedOrder);
         }
 

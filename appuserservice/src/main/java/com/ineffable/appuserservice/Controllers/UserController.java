@@ -82,6 +82,21 @@ public class UserController {
         return ResponseEntity.ok(userService.existsByUserName(username));
     }
 
+    @Operation(summary = "Update user",
+        description = "You'll get a response 200 if user is updated"
+    )
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUser(@RequestBody ServiceUser serviceUser){
+        if(userService.existsByUserName(serviceUser.getUsername())){
+            serviceUser.setId(userService.getByUserName(serviceUser.getUsername()).get().getId());
+
+            userService.updateUser(serviceUser);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 }

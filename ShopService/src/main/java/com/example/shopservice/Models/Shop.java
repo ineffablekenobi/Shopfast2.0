@@ -1,5 +1,6 @@
 package com.example.shopservice.Models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,6 +13,7 @@ import java.util.Map;
 @Document("Shop")
 public class Shop {
     @Id
+    @Schema(hidden = true)
     private String id;
 
     @Indexed(unique = true)
@@ -24,6 +26,7 @@ public class Shop {
     private String shopType;
     private List<String> phoneNumber; // customer Help
     private List<String> email; // customer help
+    @Schema(hidden = true)
     private Boolean usingWareHouseFeature;
 
 

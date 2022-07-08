@@ -60,11 +60,13 @@ public class InventoryController {
         }
     }
 
+    @Operation(summary = "Check if an inventory exists providing sku")
     @GetMapping("/exists/sku={sku}")
     public ResponseEntity<Boolean> existsBySku(@PathVariable("sku") String sku){
         return ResponseEntity.ok(inventoryService.existsBySku(sku));
     }
 
+    @Operation(summary = "Check if a product inventory exists")
     @PostMapping("/exists")
     public ResponseEntity<Boolean> existsByInventory(@RequestBody ProductInventory productInventory){
         String sku = productInventory.generateSku();
@@ -105,9 +107,8 @@ public class InventoryController {
             return ResponseEntity.badRequest().build();
         }
     }
-
+    @Operation(summary = "Get quantity by providing sku")
     @GetMapping("/quantityleft/sku={sku}")
-
     public ResponseEntity<?> getTotalQuantityBySku(@PathVariable("sku") String sku){
         try {
             return ResponseEntity.ok(inventoryService.getTotalQuantityBySku(sku));
@@ -143,6 +144,7 @@ public class InventoryController {
         }
     }
 
+    @Operation(summary = "Get all inventory")
     @GetMapping("/")
     public ResponseEntity<InventoryWrapper> getAll(){
         return ResponseEntity.ok(inventoryService.getAll());
