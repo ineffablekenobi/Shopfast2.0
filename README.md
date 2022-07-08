@@ -79,6 +79,12 @@
 [![Product Name Screen Shot][product-screenshot]](https://https://ineffablekenobi.github.io/Shopfast2.0/)
 
 This is the API diagram. This diagram shows how the API is structurally built and how they commmunicate with each other.
+This a microservice based API designed for those who wants a backend for their ecommerce. 
+
+
+  </br>
+  </br>
+  </br>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -129,8 +135,17 @@ This is the API diagram. This diagram shows how the API is structurally built an
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+
+
+DATABASE COUNT
+MYSQL
+1
+MONGODB
+6
+MYSQL
+We have only 1 mysql database. Here we have to create a database named "userserviceDB"
+
+Please note MYSQL database URL is usually : jdbc:mysql://localhost:3306/DATABASE NAME
 
 ### Things to Remember
 
@@ -182,29 +197,28 @@ example -
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+To run this project you need -
+
+* JAVA Version 15
+* MYSQL
+* MONGODB
+
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+Here's our installion guide
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+2. Open it in an IDE(Intellij Idea preffered)
+   `
+3. Let maven do it's things
+
+4. See the documentations
+
+[Documentation Site](https://ineffablekenobi.github.io/Shopfast2.0/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
