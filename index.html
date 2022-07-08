@@ -1,0 +1,577 @@
+<!doctype html> 
+<html lang="en">
+   <head>
+      <meta charset="utf-8"> 
+      <meta name="HandheldFriendly" content="True">
+      <meta name="MobileOptimized" content="320">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- For all browsers --> 
+      <link rel="stylesheet" href="https://rishikeshdarandale.github.io/aws-http/assets/stylesheets/main.css">
+      <link rel="stylesheet" href="https://rishikeshdarandale.github.io/aws-http/assets/stylesheets/vendor/prism.css">
+      <link rel="stylesheet" href="https://rishikeshdarandale.github.io/aws-http/assets/stylesheets/vendor/bootstrap-toc.min.css">
+      <meta http-equiv="cleartype" content="on">
+   </head>
+   <body data-spy="scroll" data-target="#toc">
+      <div>
+         <!-- header --> 
+         <header class="header bg-dark border-info py-3">
+            <div class="container text-left text-info">
+               <h1 data-toc-skip><i class="fas fa-location-arrow"></i> SHOPFAST MICROSERVICE</h1>
+            </div>
+         </header>
+         <!-- Page Content --> 
+         <div class="py-5 bg-light">
+            <div class="main-content container-fluid">
+               <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                     <nav id="toc" class="toc" data-toggle="toc"></nav>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                     <h1 class="display-4 py-5">Introduction</h1>
+                     <h3>What is it?</h3>
+                     <p>Thing of SHOPFAST as an API for an Marketplace.
+                        It can have many shop, customers, staffs etc 
+                     </p>
+                     <h3>
+                        Motivation
+                     </h3>
+                     <p>
+                        The Motivation behind the service was to make project on ecommerce backed 
+                        by an API that follows a microservice based design pattern                     
+                     </p>
+                     <h1 class="display-4 py-5">  Requirements </h1>
+                     <dl class="row">
+                        <dt class="col-sm-3 p-3">JAVA </dt>
+                        <dd class="col-sm-9 p-3"> Version 15</dd>
+                        <dt class="col-sm-3 p-3">MYSQL </dt>
+                        <dd class="col-sm-9"> </dd>
+                        <dt class="col-sm-3 p-3">MONGODB </dt>
+                      </dl>
+
+                      <h1 class="display-4 py-5">
+                         CONNECTING THE DATABASES
+                      </h1>
+                      
+                      <h3>
+                        DATABASE COUNT
+                      </h3>
+                      <dl class="row">
+                        <dt class="col-sm-3 p-3"><u> DATABASE NAME</u> </dt>
+                        <dd class="col-sm-9 p-3"> <u> COUNT</u> </dd>
+                      <dt class="col-sm-3 p-3">MYSQL </dt>
+                        <dd class="col-sm-9 p-3"> 1 </dd>
+                        <dt class="col-sm-3 p-3">MONGODB </dt>
+                        <dd class="col-sm-9 p-3"> 6 </dd>
+                     </dl>
+                     <h3> MYSQL </h3>
+                     <p class="lead"> We have only 1 mysql database. Here we have to create a database named
+                        "userserviceDB"
+                     </p>
+                     <p>   
+                        Please note MYSQL database URL is usually :
+                        jdbc:mysql://localhost:3306/<code>DATABASE NAME</code>
+                     </p>
+
+                     <h3 class="pt-3"> MONGODB </h3>
+                     <div class="row">
+                        <div class="col-sm-5 rounded float-left p-5">
+                           <img src="Assets/images/MONGODBS.png" alt="MONGODB IMAGE" height="500px">
+                        </div>
+
+                        <div class="col-sm-7 p-5" >
+                           <div class="pl-3 lead">
+                           These are the list of databases and the collections you have to create.
+                           </div>
+                        </div>
+                     </div>
+
+                     <h3> Setting up Geo </h3>
+                     <p class="lead">
+                        To setup the GEO location we have to download the file from github repo 
+                        and import it in the GEO collection
+                     </p>
+
+
+
+                     <h1 class="py-4"> The API Diagram </h1>
+                     
+                     <p> This is the API Diagram for User Service</p>
+
+
+
+                     
+                     <h1 class="display-4 py-5">Getting Started with the API</h1>
+                     <p class="blockquote font-weight-bold text-danger"> Launch APIs in Order </p>
+                     
+                     <h2 class="py-4">The Config Server</h3>
+                     <p>
+                        The config server is the server where configurations for your API resides.
+                        For Setting up this server it is there are some changes in the properties that 
+                        are essential.
+                     </p class="py-2">
+
+                     <p>
+                        For the config server I'm using visit <a href="https://github.com/ineffablekenobi/ShopFastConfig">
+                           the github link
+                        </a>
+                     </p>
+
+                     <p>
+                        If you use your own version of config server you have make some changes under
+                        "ShopFastConfig/sec/main/resources/application.properties"
+                     </p>
+
+                     <div class="list-group">
+                        <a href="#the-config-server" class="list-group-item list-group-item-action flex-column align-items-start active">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Set Git Repo URL</h5>
+                          </div>
+                          <p class="mb-1">
+                             set spring.cloud.config.server.git.uri to your repo address. Example -
+                          </p>
+                          <p class="mb-1">
+                           spring.cloud.config.server.git.uri= https://github.com/ineffablekenobi/ShopFastConfig
+                        </p>
+                        </a>
+
+                        <a href="#the-config-server" class="list-group-item list-group-item-action flex-column align-items-start active">
+                           <div class="d-flex w-100 justify-content-between">
+                             <h5 class="mb-1">Set Server Port</h5>
+                           </div>
+                           <p class="mb-1">
+                              set server.port to a free port. Example -
+                           </p>
+                           <p class="mb-1">
+                              server.port=8888
+                         </p>
+                         </a>
+
+
+                        <a href="#the-config-server" class="list-group-item list-group-item-action flex-column align-items-start active">
+                           <div class="d-flex w-100 justify-content-between">
+                             <h5 class="mb-1">Set Git Username </h5>
+                           </div>
+                           <p class="mb-1">
+                              set spring.cloud.config.server.git.username Example -
+                           </p>
+                           <p class="mb-1">
+                              spring.cloud.config.server.git.username=ineffablekenobi
+                         </p>
+                         </a>
+
+                         <a href="#the-config-server" class="list-group-item list-group-item-action flex-column align-items-start active">
+                           <div class="d-flex w-100 justify-content-between">
+                             <h5 class="mb-1">Set Git Personal Access Token </h5>
+                           </div>
+                           <p class="mb-1">
+                              set spring.cloud.config.server.git.password to your personal access token Example -
+                           </p>
+                           <p class="mb-1">
+                              spring.cloud.config.server.git.password=aintThatStupid
+                         </p>
+                         </a>
+
+                      </div>
+                     <h5 class="pt-4"> Implementation Ideas </h5>
+                      <p class="py-2 lead"> The config server can be used to - </p>
+                      <ol>
+                        <li class="py-1 lead"> set server ports</li>
+                        <li class="py-1 lead"> Decide the admin username</li>
+                        <li class="py-1 lead"> Controlling roles</li>
+                      </ol>
+                      <small class="blockquote">Doing all this requires good understanding of the code</small>
+                      
+                      <p class="py-2 blockquote"> It is suggested you only edit the username of the admin if you must and 
+                        dont touch anything else if you dont want to understand it. </p>
+                     
+                     <h2 class="py-4">The Eureka Server</h3>
+                     
+                     <p class="py-2 pb-5">
+                        The Eureka server usually runs at port 8761. Keep the port address free.
+                     </p>
+
+                     <img src="Assets/images/Screenshot 2022-06-03 at 8.27.35 PM.png" class="img-fluid" alt="Eureka Server images">
+
+                     
+
+                     <h1 class="py-4">The Services</h1>
+
+                     <h2 class="py-4">User Service</h2>
+                     <p class="py-2 lead">
+                        Default Port: 8081
+                     </p>
+                     <p class="py-2 lead">
+                        Documentations: localhost:8081/swagger-ui.html
+                     </p>
+                     <p class="py-2 lead">
+                        Description: Here user related informations and address related informations can be found.
+                     </p>
+
+                     <p>
+                        The models of the service are pretty intuitive.
+                     </p>
+
+                     <p class="blockquote py-2"> Its important to understand the only difference between a staff
+                        and customer is the customer wont be assigned to any shop.
+                     </p>
+
+
+                     <h5 class="py-2"> Here is sample</h5>
+                     <p> Please note we are supposed use the shopCode for employees only</p>
+                     <p> This is a sample for service user model. The given person is a customer</p>
+                     <pre>
+                        <samp>
+                           {
+                              "username" : "testuser1",
+                              "shopCode" : "",
+                              "password" : "1234",
+                              "phoneNumber" : "012321312312",
+                              "email" : "testuser1@gmail.com",
+                              "gender" : "female"
+                            }
+                        </samp>
+                     </pre>
+
+                     
+                     <h5 class="py-2">What is address type?</h5>
+                     <p class="py-1 lead">Answer: An address can be a billing address or shipping address.
+                        They are often same. But if someone decides to send a gift they might be different
+                     </p>
+                     
+                     <p class="blockquote py-2"> Its important that you dont provide any null values.
+                        If you dont want wanna use a property just use a default value.
+                     </p>
+
+                     <h5 class="py-2"> Here is sample</h5>
+                     <pre>
+                        <code>
+                           {
+                              "firstName" : "test",
+                              "lastName" : "user1",
+                              "address" : "ggwwwppp",
+                              "area" : "",
+                              "city" : "Dhaka",
+                              "district" : "",
+                              "country" : "BD",
+                              "addressType" : ""
+                            }
+                        </code>
+                     </pre>
+
+                     <h2 class="py-4">Shop Service</h2>
+                     <p class="py-2 lead">
+                        Default Port: 8084
+                     </p>
+                     <p class="py-2 lead">
+                        Documentations: localhost:8084/swagger-ui.html
+                     </p>
+                     <p class="pt-2 lead">
+                        Description: Here shop related informations can be found.
+                     </p>
+                     <small class="text-muted pb-2">There are services for product related info</small>
+
+                     <h5 class="py-2">Discussing the Idea</h5>
+                     <p class="lead">The idea behind the shop is intuitive. But the question stands 
+                        how a user is connected to shop. For instance, you can ask who is the admin 
+                        of the given shop.
+                     </p>
+
+                     <p class="py-2 lead">To answer the question we have to understand that in our system
+                        a user can be associated with only one shop.
+                     </p>
+
+                     <p class="py-2 lead">The person who create the shop should have the role shop admin and 
+                        he should the shopcode set to him.
+                     </p>
+
+
+
+                     <ol>
+                        <li>Create a Shop</li>
+                        <li>Assign the role of shop admin who created the shop</li>
+                        <li>Assign the shopCode to the user</li>
+                     </ol>
+
+                     <h2 class="py-4">Product Service</h2>
+                     <p class="py-2 lead">
+                        Default Port: 8082
+                     </p>
+                     <p class="py-2 lead">
+                        Documentations: localhost:8082/swagger-ui.html
+                     </p>
+                     <p class="pt-2 lead">
+                        Description: Here product related informations(EXCEPT INVENTORY) can be found.
+                     </p>
+                     <small class="text-muted pb-2">There are services for inventory related info</small>
+                     
+
+                     <h5 class="py-2">How to use the Product Model</h5>
+                     <ol class="py-2">
+                        <li> ShopCode is unique for a shop </li>
+                        <li> Product code is unique for product under any shop </li>
+                        <li> (ShopCode + Product code) is unique for an item </li>
+                        <li> A product has a custom properties. Example usecase -
+                           <ul>
+                              <li> you can save discounts </li>
+                              <li> you can save fabric details for t-shirt </li>   
+                           </ul>
+                        </li>
+                        <li> A product can have variants like size, color but it's implemented in the 
+                        inventory service   
+                        </li>
+                     </ol>
+
+                     <p class="font-weight-bold">Dont worry about variants here</p>
+
+
+                     <h2 class="py-4">Inventory Service</h2>
+                     <p class="py-2 lead">
+                        Default Port: 8085
+                     </p>
+                     <p class="py-2 lead">
+                        Documentations: localhost:8085/swagger-ui.html
+                     </p>
+                     <p class="pt-2 lead">
+                        Description: Here inventory related informations can be found.
+                     </p>
+
+                     <h5 class="py-2">
+                        Explanation behind the inventory model :
+                     </h5>
+
+                     <dl class="row">
+                        <dt class="col-sm-3 py-2"><u>Properties</u></dt>
+                        <dd class="col-sm-9 py-2 font-weight-bold"><u>Explanation</u></dd>
+                      
+                        <dt class="col-sm-3">shopCode</dt>
+                        <dd class="col-sm-9">The product must belong to a shop</dd>
+                      
+                        <dt class="col-sm-3">productCode</dt>
+                        <dd class="col-sm-9">
+                          <p>A unique code under a shop</p>
+                        </dd>
+                      
+                        <dt class="col-sm-3">variants</dt>
+                        <dd class="col-sm-9"> 
+                           <p>A product may come in many variants. Every variant consists a name and value </p>
+                           <p>For instance, name = color, value = red</p>
+                           <p>A group of variants might represents one product inventory  </p>
+                           <p>a t-shirt[Product] is of M size[variant 1] and color blue[variant 2] has 50 stocks. Here 2 group of variants must were used. </p>
+                        </dd>
+
+                        <dt class="col-sm-3">sku</dt>
+                        <dd class="col-sm-9">
+                          <p>There's an enpoint to get the sku of a product given the inventory informations</p>
+                        </dd>
+                        
+                      </dl>
+
+                      <p class="blockquote"> Most of the thing will be done using the product Inventory model. Please see the api documentations.</p>
+
+                     <p class="font-weight-bold text-danger">The warehouse is an experimental feature.
+                        Please put the warehouse name as "unknown" for now. Sample is given below.
+                        Please check how to create a product inventory in the working examples.
+                     </p>
+
+                     <h2 class="py-4">The Shipping Service(under developement)</h2>
+                     <h4 class="py-2">Defining models</h4>
+                     <h5 class="py-2">Geo</h5>
+                     <p>The model geo consists 2 attributes name(as name of the city), country</p>
+
+
+                     <h5 class="py-2">GeoCharge</h5>
+                     <p>The charge of delivering to a certain city of certain country(certain geo)</p>
+                     <p>consists of two attributes. Geo and charge </p>
+                     
+                     <h5 class="py-2">ShippingCharge</h5>
+                     <p>A shopCode that is unique and says to which shop the shipping charge belongs</p>
+                     <p>A shop must have global delivery charge</p>
+                     <p>And a list of specific geo charge</p>
+
+                     <p class="py-2 blockquote">Only the geo services are used by user service to internally</p>
+
+                     <h1 class="py-2"> Working Example</h1>
+                     <h5><u> Creating a user</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /user/add</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "username" : "testuser1",
+                              "shopCode" : "",
+                              "password" : "1234",
+                              "phoneNumber" : "012321312312",
+                              "email" : "testuser1@gmail.com",
+                              "gender" : "female"
+                            }
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+                     
+                     <h5><u>Creating a Address</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /user/address/new/username=testuser1</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "firstName" : "test",
+                              "lastName" : "user1",
+                              "address" : "x road y block",
+                              "area" : "",
+                              "city" : "Dhaka",
+                              "district" : "",
+                              "country" : "BD",
+                              "addressType" : "billing"
+                            }
+                            
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+                     
+                     <h5><u>Creating a Shop</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /shop/new</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "shopCode" : "gp",
+                              "shopName" : "GRAMMENPHONE",
+                              "shopAddress" : "123142214 street",
+                              "shopWebsite" : "",
+                              "shopType" : "communication",
+                              "phoneNumber" : [ "13212312312" ],
+                              "email" : [ "gp@gmail.com" ]
+                            }
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+                     
+                     <h5><u>Updating a User</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /user/update</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "username" : "testuser1",
+                              "shopCode" : "gp",
+                              "password" : "1234",
+                              "phoneNumber" : "012321312312",
+                              "email" : "testuser1@gmail.com",
+                              "gender" : "female"
+                            }
+                        </code>
+                     </pre>
+                     <h6>Expected Response 200</h6>
+                     <p class="blockquote">inlcude headers as requested above</p>
+                     
+                     <h5><u>Creating a Product</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /product/new</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "productCode": "gp-200",
+                              "shopCode": "gp",
+                              "price": 233,
+                              "category": "prepaid",
+                              "tags": [
+                                  "4G",
+                                  "prepaid",
+                                  "nano"
+                              ],
+                              "properties": {
+                                  "name": "prepaid sim",
+                                  "AppliedDiscount": "20%",
+                                  "Material": "silicon"
+                                 }
+                          }
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+
+
+                     <h5><u>Creating Inventory</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /inventory/add</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "shopCode": "gp",
+                              "productsPerWareHouse": {
+                                  "unknown": "100"
+                              },
+                              "productCode": "gp-200",
+                              "variants": [
+                                  {
+                                      "name": "COLOR",
+                                      "value": "RED"
+                                  },
+                                  {
+                                      "name": "SIZE",
+                                      "value": "M"
+                                  }
+                              ]
+                          }
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+
+
+                     <h5><u>Creating Order</u></h5>
+                     <h6>Request type: POST</h6>
+                     <h6>Endpoint: /orders/new</h6>
+                     <h6>Request Body: </h6>
+                     <pre>
+                        <code>
+                           {
+                              "orders": [
+                                {
+                                  "shopCode": "gp",
+                                  "productCode": "gp-200",
+                                  "quantity": 5,
+                                  "pricePerUnit" : 232,
+                                  "variants": [
+                                    {
+                                      "name": "COLOR",
+                                      "value": "RED"
+                                    },
+                            
+                                    {
+                                      "name": "SIZE",
+                                      "value": "M"
+                                    }
+                            
+                                  ]
+                                }
+                              ],
+                              "billingId": 29,
+                              "shippingId": 29,
+                              "userName": "testuser1"
+                            }
+                        </code>
+                     </pre>
+                     <p class="blockquote">inlcude headers as requested above</p>
+
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer -->
+      <!-- 
+      <div class="bg-dark text-light py-3 text-center">
+         <footer>
+            <div class="container"> <small>Developed with <i class="fas fa-heart text-info"></i> by <a class="text-info" href="https://rishikeshdarandale.github.io">Rishikesh Darandale</a> for all!</small> </div>
+         </footer>
+      </div> -->
+      <!-- inlcude all the scripts related to the application --> <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script> --> <script src="https://rishikeshdarandale.github.io/aws-http/assets/javascripts/vendor/prism.js"></script> <script src="https://rishikeshdarandale.github.io/aws-http/assets/javascripts/vendor/bootstrap-toc.min.js"></script> <!--<script src="https://rishikeshdarandale.github.io/aws-http/assets/javascripts/main.js"></script>--> 
+   </body>
+</html>
