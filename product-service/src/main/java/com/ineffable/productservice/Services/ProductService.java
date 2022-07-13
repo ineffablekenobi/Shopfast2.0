@@ -55,6 +55,9 @@ public class ProductService {
             throw new ProductNotFoundException("Try inserting the product first");
         }
         product.setLastUpdated(new Date(System.currentTimeMillis()));
+
+        product.setId(getByCode(product.getProductCode(),product.getShopCode()).getId());
+
         return productRepo.save(product);
     }
 

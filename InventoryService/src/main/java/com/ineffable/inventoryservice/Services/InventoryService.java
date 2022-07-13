@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -121,4 +122,11 @@ public class InventoryService {
         return totalQuantity;
 
     }
+
+    public InventoryWrapper getAllInventoriesOfProduct(String shopCode, String productCode){
+        List<ProductInventory> productInventories = inventoryRepo.findByShopCodeAndProductCode(shopCode,productCode);
+        inventoryWrapper.setProductInventories(productInventories);
+        return inventoryWrapper;
+    }
+
 }

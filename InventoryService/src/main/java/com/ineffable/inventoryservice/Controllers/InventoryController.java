@@ -150,6 +150,12 @@ public class InventoryController {
         return ResponseEntity.ok(inventoryService.getAll());
     }
 
+    @Operation(summary = "Get all inventories of a product")
+    @GetMapping("/shopcode={shopcode}&productcode={productcode}")
+    public ResponseEntity<InventoryWrapper> getInventoriesOfProduct(@PathVariable("shopcode")String shopcode,
+                                                                    @PathVariable("productcode")String productcode){
 
+        return ResponseEntity.ok(inventoryService.getAllInventoriesOfProduct(shopcode,productcode));
+    }
 
 }

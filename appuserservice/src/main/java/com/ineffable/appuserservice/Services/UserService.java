@@ -71,6 +71,7 @@ public class UserService {
 
     public void updateUser(ServiceUser serviceUser){
         // make sure the id is assigned
+        serviceUser.setPassword(passwordEncoder.encode(serviceUser.getPassword()));
         userRepo.save(serviceUser);
     }
 
