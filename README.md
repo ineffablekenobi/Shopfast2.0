@@ -287,7 +287,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@swapnilsharmasas](https://twitter.com/swapnilsharmasa) - swapnilsharmasarker@gmail.com
+Swapnil Sharma Sarker - [@swapnilsharmasas](https://twitter.com/swapnilsharmasa) - swapnilsharmasarker@gmail.com
 
 Project Link: [Github Project](https://github.com/ineffablekenobi/Shopfast2.0)
 
